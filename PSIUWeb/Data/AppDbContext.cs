@@ -6,7 +6,7 @@ using PSIUWeb.Models;
 namespace PSIUWeb.Data
 {
     public class AppDbContext : 
-        IdentityDbContext<IdentityUser, IdentityRole, string>
+        IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) 
             : base(options)
