@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PSIUWeb.Data;
+using PSIUWeb.Data.EF;
+using PSIUWeb.Data.Interface;
 using PSIUWeb.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             GetConnectionString("PsiuContext") 
     ) 
 );
+
+//Scoped Services
+// Serviços que são registrados para serem criados
+// a cada requisição HTTP
+builder.Services.AddScoped<IPacientRepository, EFPacientRepository>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>( 
     options =>
@@ -48,5 +55,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+SeedData.EnsurePopulated(app);
+
 
 app.Run();

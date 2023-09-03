@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x1yaGojwPu7ifjfNoFkytF+J+hukGQYyI/WlxUEXArqqy1hLB7BPI2go2d1PumLbMYHRNEbnPDpGmUWwIS3ObA==",
+  "dgSpecHash": "FWDnqTDbzcw3YxrvEEd8RXdeZywndW0CX8fvn3VH62oWkT0PANZ9lHmHqcFnAcND84aaHJTFh1B0MV80H5JMTQ==",
   "success": true,
-  "projectFilePath": "D:\\Unoesc\\Programacao II\\2023\\Projetos\\PSIU\\PsiuWeb\\PSIUWeb.csproj",
+  "projectFilePath": "D:\\Unoesc\\Programacao II\\2023\\Projetos\\PSIU\\PSIUWeb\\PSIUWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WIN.000\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\WIN.000\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.20\\microsoft.aspnetcore.cryptography.internal.6.0.20.nupkg.sha512",

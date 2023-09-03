@@ -38,7 +38,7 @@ namespace PSIUWeb.Models
         public Race Race { get; set; }
 
         [ForeignKey("User")]
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public string? UserId { get; set; }
+        public AppUser? User { get; set; }
     }
 }
