@@ -1,0 +1,43 @@
+﻿@model Pacient
+
+
+<div class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-6">
+                <h1 class="m-0">
+                    EXCLUIR: <small>Paciente</small>
+                </h1>
+            </div>
+            <div class="col-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Pacient" 
+                            asp-action="Index">
+                            Voltar ao início
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <form asp-action="DeleteConfirmed">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Excluir" class="btn btn-danger"/>
+        </form>
+    </div>
+</div>
