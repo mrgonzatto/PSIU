@@ -38,9 +38,7 @@ namespace PSIUWeb.Data.EF
             context.Pacients?.Remove(p);
             context.SaveChanges();
 
-            return p;
-            
-
+            return p;            
         }
 
         public Pacient? GetPacientById(int id)
@@ -52,7 +50,6 @@ namespace PSIUWeb.Data.EF
                     .FirstOrDefault();
 
             return p;
-
         }
 
         public IQueryable<Pacient>? GetPacients()
