@@ -43,7 +43,7 @@ namespace PSIUWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Pacient pacient)
-        {
+        {            
             if ( ModelState.IsValid )
             {
                 try
