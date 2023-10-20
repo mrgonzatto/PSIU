@@ -3,20 +3,20 @@ using PSIUWeb.Models;
 
 namespace PSIUWeb.Data.EF
 {
-    public class EFCategoryRepository : ICategoryRepository
+    public class EFContentRepository : IContentRepository
     {
         private AppDbContext context;
 
-        public EFCategoryRepository(AppDbContext context)
+        public EFContentRepository(AppDbContext context)
         {
             this.context = context;
         }
 
-        public Category? Create(Category c)
+        public Content? Create(Content c)
         {
             try
             {
-                context.Categories?.Add(c);
+                context.Contents?.Add(c);
                 context.SaveChanges();
             }
             catch
@@ -27,40 +27,40 @@ namespace PSIUWeb.Data.EF
             return c;
         }
 
-        public Category? Delete(int id)
+        public Content? Delete(int id)
         {
-            Category? c = GetCategoryById(id);
+            Content? c = GetContentById(id);
 
             if (c == null)
                 return null;
 
-            context.Categories?.Remove(c);
+            context.Contents?.Remove(c);
             context.SaveChanges();
 
             return c;
         }
 
-        public IQueryable<Category>? GetCategories()
+        public Content? GetContentById(int id)
         {
-            return context.Categories;
-        }
-
-        public Category? GetCategoryById(int id)
-        {
-            Category? c =
+            Content? c =
                 context
-                    .Categories?
+                    .Contents?
                     .Where(c => c.Id == id)
                     .FirstOrDefault();
 
             return c;
         }
 
-        public Category? Update(Category c)
+        public IQueryable<Content>? GetContents()
+        {
+            return context.Contents;
+        }
+
+        public Content? Update(Content c)
         {
             try
             {
-                context.Categories?.Update(c);
+                context.Contents?.Update(c);
                 context.SaveChanges();
             }
             catch

@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PSIUWeb.Data.EF;
 using PSIUWeb.Data.Interface;
 using PSIUWeb.Models;
 
 namespace PSIUWeb.Controllers
 {
-    public class CategoryController : Controller
+    public class ContentController : Controller
     {
-        private ICategoryRepository categoryRepository;
+        private IContentRepository contentRepository;
 
-        public CategoryController(ICategoryRepository repo)
-        { 
-            categoryRepository = repo;
+        public ContentController(IContentRepository contentRepository)
+        {
+            this.contentRepository = contentRepository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
             return View(
-                categoryRepository.GetCategories()
+                contentRepository.GetContents()
             );
         }
 
@@ -28,8 +29,8 @@ namespace PSIUWeb.Controllers
             if (id <= 0 || id == null)
                 return NotFound();
 
-            Category? c =
-                categoryRepository.GetCategoryById(id.Value);
+            Content? c =
+                contentRepository.GetContentById(id.Value);
 
             if (c == null)
                 return NotFound();
@@ -39,14 +40,14 @@ namespace PSIUWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category category)
+        public IActionResult Edit(Content content)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    categoryRepository.Update(category);
-                    return View("Index", categoryRepository.GetCategories());
+                    contentRepository.Update(content);
+                    return View("Index", contentRepository.GetContents());
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -62,7 +63,7 @@ namespace PSIUWeb.Controllers
             if (id == null)
                 return NotFound();
 
-            Category? c = categoryRepository.GetCategoryById(id.Value);
+            Content? c = contentRepository.GetContentById(id.Value);
 
             if (c == null)
                 return NotFound();
@@ -77,7 +78,7 @@ namespace PSIUWeb.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            categoryRepository.Delete(id);
+            contentRepository.Delete(id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -89,14 +90,14 @@ namespace PSIUWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(Category c)
+        public IActionResult Insert(Content c)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    categoryRepository.Create(c);
-                    return View("Index", categoryRepository.GetCategories());
+                    contentRepository.Create(c);
+                    return View("Index", contentRepository.GetContents());
                 }
                 catch (Exception)
                 {
