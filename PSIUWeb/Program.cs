@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Serviços que são registrados para serem criados
 // a cada requisição HTTP
 builder.Services.AddScoped<IPacientRepository, EFPacientRepository>();
+builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>( 
     options =>
