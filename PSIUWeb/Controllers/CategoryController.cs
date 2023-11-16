@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PSIUWeb.Data;
 using PSIUWeb.Data.Interface;
 using PSIUWeb.Models;
 
@@ -8,10 +10,15 @@ namespace PSIUWeb.Controllers
     public class CategoryController : Controller
     {
         private ICategoryRepository categoryRepository;
+        private readonly AppDbContext _context;
 
-        public CategoryController(ICategoryRepository repo)
+        public CategoryController(
+            ICategoryRepository repo
+            , AppDbContext context            
+        )
         { 
             categoryRepository = repo;
+            _context = context;
         }
 
         [HttpGet]
@@ -85,14 +92,16 @@ namespace PSIUWeb.Controllers
         [HttpGet]
         public IActionResult Insert()
         {
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "Id", "Name");
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Insert(Category c)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     categoryRepository.Create(c);
@@ -102,7 +111,7 @@ namespace PSIUWeb.Controllers
                 {
                     throw;
                 }
-            }
+            //}
             return View();
         }
     }

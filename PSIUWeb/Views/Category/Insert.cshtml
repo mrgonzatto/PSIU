@@ -1,0 +1,64 @@
+﻿@model Category
+
+<div class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-6">
+                <h1 class="m-0">
+                    CADASTRO: <small>Categoria</small>
+                </h1>
+            </div>
+            <div class="col-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a asp-action="Index"
+                           asp-controller="Category">
+                            Listagem
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <form asp-action="Insert" style="width:100%;">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control"
+                               placeholder="Nome da categoria" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+
+                        <label class="control-label">Categoria Pai</label>
+                        <select id="ParentId" name="ParentId" class="form-control" 
+                            asp-items="ViewBag.CategoryID">
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="form-group">
+                <input type="submit" value="Inserir"
+                       class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
