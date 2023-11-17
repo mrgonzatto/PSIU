@@ -34,18 +34,25 @@
                                         <td>@p.Parent?.Name</td>
                                         <td>
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-4">
                                                     <a asp-controller="Category"
                                                        asp-action="Edit"
                                                        asp-route-id="@p.Id">
                                                         Editar
                                                     </a>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-4">
                                                     <a asp-controller="Category"
                                                        asp-action="Delete"
                                                        asp-route-id="@p.Id">
                                                         Excluir
+                                                    </a>
+                                                </div>
+                                                <div class="col-4">
+                                                    <a asp-controller="Category"
+                                                        asp-action="Insert" 
+                                                        asp-route-parentId="@p.Id">
+                                                        Criar submenu
                                                     </a>
                                                 </div>
                                             </div>

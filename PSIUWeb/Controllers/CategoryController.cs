@@ -41,6 +41,14 @@ namespace PSIUWeb.Controllers
             if (c == null)
                 return NotFound();
 
+            ViewData["CategoryID"] =
+                new SelectList(
+                    _context.Categories
+                    , "Id"
+                    , "Name"
+                    , c.ParentId
+                );
+
             return View(c);
         }
 
@@ -48,8 +56,8 @@ namespace PSIUWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category category)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     categoryRepository.Update(category);
@@ -59,8 +67,8 @@ namespace PSIUWeb.Controllers
                 {
                     throw;
                 }
-            }
-            return View("Index");
+            //}
+            return RedirectToAction("Index", "Category");
         }
 
         [HttpGet]
@@ -90,9 +98,15 @@ namespace PSIUWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Insert()
+        public IActionResult Insert(int? parentId)
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CategoryID"] = 
+                new SelectList(
+                    _context.Categories
+                    , "Id"
+                    , "Name"
+                    , parentId
+                );
 
             return View();
         }
@@ -112,7 +126,7 @@ namespace PSIUWeb.Controllers
                     throw;
                 }
             //}
-            return View();
+            return RedirectToAction("Index", "Category");
         }
     }
 }
